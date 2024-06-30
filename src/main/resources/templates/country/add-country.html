@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+    <title>Thêm Quốc Gia</title>
+</head>
+<body>
+<th:block th:replace="~{layout::header}"></th:block>
+<section layout:fragment="content" class="container mt-5">
+    <h1 class="mb-4">Form Country</h1>
+    <form th:action="@{/countries/add}" th:object="${country}" method="post">
+        <div class="mb-3">
+            <label for="name" class="form-label">Tên quốc gia:</label>
+            <input type="text" id="name" th:field="*{nameCountry}" class="form-control"/>
+            <div class="text-danger" th:if="${#fields.hasErrors('nameCountry')}"
+                 th:errors="*{nameCountry}"></div>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</section>
+<th:block th:replace="~{layout::footer}"></th:block>
+</body>
+</html>
