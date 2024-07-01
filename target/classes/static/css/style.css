@@ -600,11 +600,13 @@ pre code {
 .container-md,
 .container-lg,
 .container-xl {
-  width: 100%;
+  width: 1300px;
   padding-right: 15px;
   padding-left: 15px;
-  margin-right: auto;
+  text-align: center;
   margin-left: auto;
+  margin-right: auto;
+
 }
 
 @media (min-width: 576px) {
@@ -4017,6 +4019,7 @@ input[type="button"].btn-block {
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
+  text-align: center;
 }
 
 .navbar-brand {
@@ -4090,6 +4093,7 @@ input[type="button"].btn-block {
   .navbar-expand-sm > .container-fluid, .navbar-expand-sm > .container-sm, .navbar-expand-sm > .container-md, .navbar-expand-sm > .container-lg, .navbar-expand-sm > .container-xl {
     padding-right: 0;
     padding-left: 0;
+    text-align: center;
   }
 }
 
