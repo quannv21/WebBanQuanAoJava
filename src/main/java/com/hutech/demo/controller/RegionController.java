@@ -3,6 +3,8 @@ package com.hutech.demo.controller;
 import com.hutech.demo.NotFoundByIdException;
 import com.hutech.demo.model.Region;
 import com.hutech.demo.service.RegionService;
+import com.hutech.demo.service.TournamentService;
+import com.hutech.demo.service.CountryService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,13 +21,20 @@ import org.springframework.web.bind.annotation.PostMapping;
 public class RegionController {
     @Autowired
     private final RegionService regionService;
+    @Autowired
+    private final TournamentService tournamentService; // Assuming you have a TournamentService
+    @Autowired
+    private final CountryService countryService; // Assuming you have a CountryService
 
     @GetMapping("/regions/add")
     public String showFormAdd(Model model)
     {
         model.addAttribute("region",new Region());
+        model.addAttribute("tournaments", tournamentService.getAllTournaments()); // Add all tournaments to the model
+        model.addAttribute("countries", countryService.getAllCountry()); // Add all countries to the model
         return "/regions/add-region";
     }
+
     @PostMapping("/regions/add")
     public String saveRegion(@Valid Region region, BindingResult bindingResult)
     {
@@ -43,17 +52,21 @@ public class RegionController {
         model.addAttribute("regions",regionService.getAllRegions());
         return "/regions/regions-list";
     }
+
     @GetMapping("/regions/edit/{id}")
     public String formRegion(@PathVariable("id")Long id, Model model)
     {
         try {
             Region region =  regionService.getById(id);
             model.addAttribute("region", region);
+            model.addAttribute("tournaments", tournamentService.getAllTournaments()); // Add all tournaments to the model
+            model.addAttribute("countries", countryService.getAllCountry()); // Add all countries to the model
             return "/regions/edit-region";
         } catch (NotFoundByIdException e) {
             return "redirect:/regions";
         }
     }
+
     @PostMapping("/regions/edit/{id}")
     public String formUpdateRegion(@ModelAttribute("region") Region region, BindingResult result)
     {

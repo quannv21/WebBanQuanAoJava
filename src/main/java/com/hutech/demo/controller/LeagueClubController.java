@@ -3,6 +3,8 @@ package com.hutech.demo.controller;
 import com.hutech.demo.NotFoundByIdException;
 import com.hutech.demo.model.LeagueClub;
 import com.hutech.demo.service.LeagueClubService;
+import com.hutech.demo.service.TeamClubService;
+import com.hutech.demo.service.TournamentService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,11 +21,17 @@ import org.springframework.web.bind.annotation.PostMapping;
 public class LeagueClubController {
     @Autowired
     private final LeagueClubService leagueClubService;
+    @Autowired
+    private final TeamClubService teamClubService;
+    @Autowired
+    private final TournamentService tournamentService;
 
     @GetMapping("/leagueclubs/add")
     public String showFormAdd(Model model)
     {
         model.addAttribute("leagueClub",new LeagueClub());
+        model.addAttribute("regions", teamClubService.getAllTeamClubs());
+        model.addAttribute("tournaments", tournamentService.getAllTournaments());
         return "/leagueclubs/add-leagueclub";
     }
     @PostMapping("/leagueclubs/add")
@@ -49,6 +57,8 @@ public class LeagueClubController {
         try {
             LeagueClub leagueClub =  leagueClubService.getById(id);
             model.addAttribute("leagueClub", leagueClub);
+            model.addAttribute("regions", teamClubService.getAllTeamClubs());
+            model.addAttribute("tournaments", tournamentService.getAllTournaments());
             return "/leagueclubs/edit-leagueclub";
         } catch (NotFoundByIdException e) {
             return "redirect:/leagueclubs";

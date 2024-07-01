@@ -11,11 +11,13 @@
 <th:block th:replace="~{layout::header}"></th:block>
 <section layout:fragment="content" class="container mt-5">
     <h1>Danh sách câu lạc bộ</h1>
+    <a th:href="@{/leagueclubs/add}" class="btn btn-primary">Thêm mới câu lạc bộ</a>
     <table class="table">
         <thead>
         <tr>
             <th scope="col">ID</th>
             <th scope="col">Tên câu lạc bộ</th>
+            <th scope="col">Tên giải đấu</th> <!-- New column for tournament -->
             <th scope="col">Actions</th>
         </tr>
         </thead>
@@ -23,6 +25,7 @@
         <tr th:each="leagueClub : ${leagueClubs}">
             <td th:text="${leagueClub.id}"></td>
             <td th:text="${leagueClub.nameLeague}"></td>
+            <td th:text="${leagueClub.tournament.name}"></td> <!-- Display tournament -->
             <td>
                 <a th:href="@{/leagueclubs/edit/{id}(id=${leagueClub.id})}" class="btn btn-primary">Edit</a>
                 <a th:href="@{/leagueclubs/delete/{id}(id=${leagueClub.id})}" class="btn btn-danger">Delete</a>

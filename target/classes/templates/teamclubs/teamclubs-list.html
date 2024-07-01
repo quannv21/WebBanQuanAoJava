@@ -16,6 +16,7 @@
         <tr>
             <th scope="col">ID</th>
             <th scope="col">Tên đội bóng</th>
+            <th scope="col">Tên giải đấu</th>
             <th scope="col">Actions</th>
         </tr>
         </thead>
@@ -23,6 +24,7 @@
         <tr th:each="teamclub : ${teamClubs}">
             <td th:text="${teamclub.id}"></td>
             <td th:text="${teamclub.nameClub}"></td>
+            <td th:text="${teamclub.leagueClub.nameLeague}"></td>
             <td>
                 <a th:href="@{/teamclubs/edit/{id}(id=${teamclub.id})}" class="btn btn-primary">Edit</a>
                 <a th:href="@{/teamclubs/delete/{id}(id=${teamclub.id})}" class="btn btn-danger">Delete</a>
