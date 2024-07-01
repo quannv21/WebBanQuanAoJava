@@ -1,0 +1,191 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head th:fragment="head">
+    <!-- head content -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>Sample title - Ecommerce admin dashboard template</title>
+
+    <link href="admin/images/favicon.ico" rel="shortcut icon" type="image/x-icon">
+
+    <link href="@{/css/bootstrapf9e3.css?v=1.1" rel="stylesheet" type="text/css"/>
+
+    <!-- custom style -->
+    <link href="admin/css/uif9e3.css?v=1.1" rel="stylesheet" type="text/css"/>
+    <link href="admin/css/responsivef9e3.css?v=1.1" rel="stylesheet" />
+
+    <!-- iconfont -->
+    <link rel="stylesheet" th:href="@{admin/fonts/material-icon/css/round.css}"/>
+</head>
+
+
+<body>
+<b class="screen-overlay"></b>
+<aside class="navbar-aside" id="offcanvas_aside">
+    <div class="aside-top">
+        <a th:href="page-index-1.html" class="brand-wrap">
+            <img th:src="@{/images/logo.png}" height="46" class="logo" alt="Ecommerce dashboard template">
+        </a>
+        <div>
+            <button class="btn btn-icon btn-aside-minimize"> <i class="text-muted material-icons md-menu_open"></i> </button>
+        </div>
+    </div>
+    <!-- aside-top.// -->
+    <div th:replace="sidebar :: sidebar"></div>
+
+
+    <nav>
+        <ul class="menu-aside">
+            <li class="menu-item active">
+                <a class="menu-link" href="page-index-1.html"> <i class="icon material-icons md-home"></i>
+                    <span class="text">Bảng điều khiển</span>
+                </a>
+            </li>
+            <a class="menu-link has-submenu" href="src/main/resources/admin/products/products-list.html"> <i class="icon material-icons md-shopping_bag"></i>
+                <span class="text">Sản phẩm</span>
+            </a>
+            <a th:href="@{/templates/products}" class="nav-item nav-link active">Quản lí sản phẩm</a>
+            <a th:href="@{/templates/categories}" class="nav-item nav-link active">Quản lí categories</a>
+            <a th:href="@{/templates/brands}" class="nav-item nav-link active">Quản lí brands</a>
+            <a th:href="@{/countries}" class="nav-item nav-link active">Quản lí countries</a>
+            <a th:href="@{/templates/leagueclubs}" class="nav-item nav-link active">Quản lí leagueclubs</a>
+            <a th:href="@{/templates/regions}" class="nav-item nav-link active">Quản lí regions</a>
+            <a th:href="@{/templates/teamclubs}" class="nav-item nav-link active">Quản lí teamclubs</a>
+            <li class="menu-item menu-item has-submenu">
+                <a class="menu-link" href="page-orders-1.html"> <i class="icon material-icons md-shopping_cart"></i>
+                    <span class="text">Đơn hàng</span>
+                </a>
+                <div class="submenu">
+                    <a href="page-orders-2.html">Danh sách đơn hàng</a>
+                    <a href="page-orders-detail.html">Chi tiết đơn hàng</a>
+                </div>
+            </li>
+            <a class="menu-link menu-item has-submenu" href="page-sellers-cards.html"> <i class="icon material-icons md-person"></i>
+                <span class="text">Quản lý người dùng</span>
+            </a>
+            <li class="menu-item">
+                <a class="menu-link" href="page-reviews.html"> <i class="icon material-icons md-comment"></i>
+                    <span class="text">Danh sách liên hệ</span>
+                </a>
+            </li>
+            <li class="menu-item">
+                <a class="menu-link" disabled href="#"> <i class="icon material-icons md-pie_chart"></i>
+                    <span class="text">Thống kê</span>
+                </a>
+            </li>
+        </ul>
+        <hr>
+        <ul class="menu-aside">
+            <li class="menu-item has-submenu">
+                <a class="menu-link" href="#"> <i class="icon material-icons md-settings"></i>
+                    <span class="text">Cài đặt</span>
+                </a>
+                <div class="submenu">
+                    <a href="page-settings-1.html">Cài đặt tài khoản</a>
+                    <a href="page-settings-2.html">Cài đặt trang web</a>
+                </div>
+            </li>
+        </ul>
+        <br>
+        <br>
+    </nav>
+</aside>
+<div th:replace="sidebar :: sidebar"></div>
+
+<!-- Include the sidebar -->
+
+
+
+
+<main class="main-wrap">
+    <header class="main-header navbar">
+        <div class="col-search">
+            <form class="searchform">
+                <div class="input-group">
+                    <input list="search_terms" type="text" class="form-control" placeholder="Tìm kiếm...">
+                    <button class="btn btn-light bg" type="button"> <i class="material-icons md-search"></i> </button>
+                </div>
+                <datalist id="search_terms">
+                    <option value="Products">
+                    <option value="New orders">
+                    <option value="Apple iphone">
+                    <option value="Ahmed Hassan">
+                </datalist>
+            </form>
+        </div>
+        <div class="col-nav">
+            <button class="btn btn-icon btn-mobile me-auto" data-trigger="#offcanvas_aside"> <i class="md-28 material-icons md-menu"></i> </button>
+            <ul class="nav">
+                <li class="nav-item">
+                    <a class="nav-link btn-icon" onclick="darkmode(this)" title="Dark mode" href="#"> <i class="material-icons md-nights_stay"></i> </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link btn-icon" href="#"> <i class="material-icons md-notifications_active"></i> </a>
+                </li>
+                <li class="dropdown nav-item">
+                    <a class="dropdown-toggle" data-bs-toggle="dropdown" href="#"> <img class="img-xs rounded-circle" src="admin/images/people/avatar1.jpg" alt="User"></a>
+                    <div class="dropdown-menu dropdown-menu-end">
+                        <a class="dropdown-item" href="page-seller-detail.html">Tài khoản</a>
+                        <a class="dropdown-item" href="page-settings-1.html">Cài đặt</a>
+                        <a class="dropdown-item text-danger" href="#">Đăng xuất</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </header>
+    <!-- Include the header -->
+    <header th:replace="header :: header"></header>
+    <script type="text/javascript">
+        if(localStorage.getItem("darkmode")){
+            var body_el = document.body;
+            body_el.className += 'dark';
+        }
+    </script>
+
+    <script src="admin/js/jquery-3.5.0.min.js"></script>
+    <script src="admin/js/bootstrap.bundle.min.js"></script>
+
+
+    <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script> -->
+    <script src="admin/js/bootstrap.min.js"></script>
+    <!-- ChartJS files-->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+
+    <!-- Custom JS -->
+    <script src="admin/js/scriptc619.js?v=1.0" type="text/javascript"></script>
+
+    <!-- ChartJS customize-->
+    <script>
+        var ctx = document.getElementById('myChart').getContext('2d');
+        var chart = new Chart(ctx, {
+            // The type of chart we want to create
+            type: 'line',
+
+            // The data for our dataset
+            data: {
+                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+                datasets: [
+                    {
+                        label: 'Sales',
+                        backgroundColor: 'rgb(44, 120, 220)',
+                        borderColor: 'rgb(44, 120, 220)',
+                        data: [18, 17, 4, 3, 2, 20, 25, 31, 25, 22, 20, 9]
+                    },
+                    {
+                        label: 'Visitors',
+                        backgroundColor: 'rgb(180, 200, 230)',
+                        borderColor: 'rgb(180, 200, 230)',
+                        data: [40, 20, 17, 9, 23, 35, 39, 30, 34, 25, 27,18]
+                    }
+
+                ]
+            },
+
+            // Configuration options go here
+            options: {}
+        });
+
+    </script>
+</body>
+</html>
