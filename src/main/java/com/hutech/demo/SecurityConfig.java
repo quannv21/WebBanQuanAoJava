@@ -53,7 +53,7 @@ public class SecurityConfig {
                 )
                 .logout(logout -> logout
                         .logoutUrl("/logout")
-                        .logoutSuccessUrl("/login") // Trang chuyển hướng sau khi đăng xuất.
+                        .logoutSuccessUrl("/") // Trang chuyển hướng sau khi đăng xuất.
                         .deleteCookies("JSESSIONID") // Xóa cookie.
                         .invalidateHttpSession(true) // Hủy phiên làm việc.
                         .clearAuthentication(true) // Xóa xác thực.
@@ -62,7 +62,7 @@ public class SecurityConfig {
                 .formLogin(formLogin -> formLogin
                         .loginPage("/login") // Trang đăng nhập.
                         .loginProcessingUrl("/login") // URL xử lý đăng nhập.
-                        .defaultSuccessUrl("/") // Trang sau đăng nhập thành công.
+                        .defaultSuccessUrl("/", true) // Trang sau đăng nhập thành công.
                         .failureUrl("/login?error") // Trang đăng nhập thất bại.
                         .permitAll()
 
