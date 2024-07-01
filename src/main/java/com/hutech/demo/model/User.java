@@ -53,7 +53,6 @@ public class User implements UserDetails {
 
     @Column(name = "avatar")
     private String avatar;
-    // getter and setter for avatar
 
 
     @ManyToMany(fetch=FetchType.EAGER)
