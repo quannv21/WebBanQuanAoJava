@@ -27,13 +27,13 @@ public class HomeController {
     @Autowired
     private TeamClubService teamClubService;
 
-    @GetMapping
+    @GetMapping("/home")
     public String home(Model model) {
         model.addAttribute("categories", tournamentCategoryService.getAllTournamentCategory());
         model.addAttribute("tournaments", tournamentService.getAllTournaments());
         var ok = leagueClubService.getAllLeagueClubs();
         model.addAttribute("leagues", leagueClubService.getAllLeagueClubs());
         model.addAttribute("teamclubs", teamClubService.getAllTeamClubs());
-        return "index";
+        return "home/home";
     }
 }

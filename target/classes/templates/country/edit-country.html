@@ -30,7 +30,7 @@
             <div class="text-danger" th:if="${#fields.hasErrors('region')}" th:errors="*{region}"></div>
         </div>
         <button type="submit" class="btn btn-primary">Cập nhật quốc gia</button>
-        <a th:href="@{/countries}" class="btn btn-link">Hủy</a>
+        <a href="/countries" class="btn btn-danger">Cancel</a>
     </form>
 </section>
 <script

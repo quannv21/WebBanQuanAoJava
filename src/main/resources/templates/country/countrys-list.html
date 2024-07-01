@@ -1,36 +1,184 @@
-<!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="~{layout}">
+<!DOCTYPE HTML>
+<html
+        xmlns:sec="http://www.w3.org/1999/xhtml~{layout}">
 <head>
-    <title th:text="${title} ?: 'Kết Quả'">Kết Quả</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>Sample title - Ecommerce admin dashboard template</title>
+
+    <link href="admin/images/favicon.ico" rel="shortcut icon" type="image/x-icon">
+
+    <link href="admin/css/bootstrapf9e3.css?v=1.1" rel="stylesheet" type="text/css"/>
+
+    <!-- custom style -->
+    <link href="admin/css/uif9e3.css?v=1.1" rel="stylesheet" type="text/css"/>
+    <link href="admin/css/responsivef9e3.css?v=1.1" rel="stylesheet" />
+
+    <!-- iconfont -->
+    <link rel="stylesheet" href="admin/fonts/material-icon/css/round.css"/>
+
 </head>
 <body>
-<th:block th:replace="~{layout::header}"></th:block>
-<section layout:fragment="content">
-    <h1>Country List</h1>
-    <a th:href="@{/countries/add}" class="btn btn-primary mb-3 me-2">Thêm quốc gia</a>
-    <table class="table table-bordered table-hover">
-        <thead>
-        <tr>
-            <th>ID</th>
-            <th>Tên quốc gia</th>
-            <th>Khu vực</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="country : ${countries}">
-            <td th:text="${country.id}"></td>
-            <td th:text="${country.nameCountry}"></td>
-            <td th:text="${country.region.nameRegion}"></td>
-            <td>
-                <a th:href="@{/countries/edit/{id}(id=${country.id})}" class="btn btn-success btn-sm">Edit</a>
-                <a th:href="@{/countries/delete/{id}(id=${country.id})}" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure?')">Delete</a>
-            </td>
-        </tr>
-        </tbody>
-    </table>
-</section>
+<b class="screen-overlay"></b>
+<!-- * modal delete -->
+<!-- Modal -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Xoá sản phẩm</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Bạn có chắc chắn muốn xoá sản phẩm này không?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Thoát</button>
+                <button type="button" class="btn btn-primary bg-danger">Đồng ý</button>
+            </div>
+        </div>
+    </div>
+</div>
+<aside class="navbar-aside" id="offcanvas_aside">
+    <div class="aside-top">
+        <a href="page-index-1.html" class="brand-wrap">
+            <img src="admin/images/logo.png" height="46" class="logo" alt="Ecommerce dashboard template">
+        </a>
+        <div>
+            <button class="btn btn-icon btn-aside-minimize"> <i class="text-muted material-icons md-menu_open"></i> </button>
+        </div>
+    </div> <!-- aside-top.// -->
+
+    <nav>
+        <ul class="menu-aside">
+            <li class="menu-item active">
+                <a class="menu-link" href="page-index-1.html"> <i class="icon material-icons md-home"></i>
+                    <span class="text">Bảng điều khiển</span>
+                </a>
+            </li>
+            <a class="menu-link has-submenu" href="src/main/resources/admin/products/products-list.html"> <i class="icon material-icons md-shopping_bag"></i>
+                <span class="text">Sản phẩm</span>
+            </a>
+            <a th:href="@{/products}" class="nav-item nav-link active">Quản lí sản phẩm</a>
+            <a th:href="@{/categories}" class="nav-item nav-link active">Quản lí categories</a>
+            <a th:href="@{/brands}" class="nav-item nav-link active">Quản lí brands</a>
+            <a th:href="@{/countries}" class="nav-item nav-link active">Quản lí countries</a>
+            <a th:href="@{/leagueclubs}" class="nav-item nav-link active">Quản lí leagueclubs</a>
+            <a th:href="@{/regions}" class="nav-item nav-link active">Quản lí regions</a>
+            <a th:href="@{/teamclubs}" class="nav-item nav-link active">Quản lí teamclubs</a>
+            <li class="menu-item menu-item has-submenu">
+                <a class="menu-link" href="page-orders-1.html"> <i class="icon material-icons md-shopping_cart"></i>
+                    <span class="text">Đơn hàng</span>
+                </a>
+                <div class="submenu">
+                    <a href="page-orders-2.html">Danh sách đơn hàng</a>
+                    <a href="page-orders-detail.html">Chi tiết đơn hàng</a>
+                </div>
+            </li>
+            <a class="menu-link menu-item has-submenu" href="page-sellers-cards.html"> <i class="icon material-icons md-person"></i>
+                <span class="text">Quản lý người dùng</span>
+            </a>
+            <li class="menu-item">
+                <a class="menu-link" href="page-reviews.html"> <i class="icon material-icons md-comment"></i>
+                    <span class="text">Danh sách liên hệ</span>
+                </a>
+            </li>
+            <li class="menu-item">
+                <a class="menu-link" disabled href="#"> <i class="icon material-icons md-pie_chart"></i>
+                    <span class="text">Thống kê</span>
+                </a>
+            </li>
+        </ul>
+        <hr>
+        <ul class="menu-aside">
+            <li class="menu-item has-submenu">
+                <a class="menu-link" href="#"> <i class="icon material-icons md-settings"></i>
+                    <span class="text">Cài đặt</span>
+                </a>
+                <div class="submenu">
+                    <a href="page-settings-1.html">Cài đặt tài khoản</a>
+                    <a href="page-settings-2.html">Cài đặt trang web</a>
+                </div>
+            </li>
+        </ul>
+        <br>
+        <br>
+    </nav>
+</aside>
+
+<main class="main-wrap">
+    <header class="main-header navbar">
+        <div class="col-search">
+            <form class="searchform">
+                <div class="input-group">
+                    <input list="search_terms" type="text" class="form-control" placeholder="Tìm kiếm...">
+                    <button class="btn btn-light bg" type="button"> <i class="material-icons md-search"></i> </button>
+                </div>
+                <datalist id="search_terms">
+                    <option value="Products">
+                    <option value="New orders">
+                    <option value="Apple iphone">
+                    <option value="Ahmed Hassan">
+                </datalist>
+            </form>
+        </div>
+        <div class="col-nav">
+            <button class="btn btn-icon btn-mobile me-auto" data-trigger="#offcanvas_aside"> <i class="md-28 material-icons md-menu"></i> </button>
+            <ul class="nav">
+                <li class="nav-item">
+                    <a class="nav-link btn-icon" onclick="darkmode(this)" title="Dark mode" href="#"> <i class="material-icons md-nights_stay"></i> </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link btn-icon" href="#"> <i class="material-icons md-notifications_active"></i> </a>
+                </li>
+                <li class="dropdown nav-item">
+                    <a class="dropdown-toggle" data-bs-toggle="dropdown" href="#"> <img class="img-xs rounded-circle" src="admin/images/people/avatar1.jpg" alt="User"></a>
+                    <div class="dropdown-menu dropdown-menu-end">
+                        <a class="dropdown-item" href="page-seller-detail.html">Tài khoản</a>
+                        <a class="dropdown-item" href="page-settings-1.html">Cài đặt</a>
+                        <a class="dropdown-item text-danger" href="#">Đăng xuất</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </header>
+    <section class="content-main">
+        <h1>Country List</h1>
+        <a th:href="@{/countries/add}" class="btn btn-primary mb-3 me-2">Thêm quốc gia</a>
+        <table class="table table-bordered table-hover">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Tên quốc gia</th>
+                <th>Khu vực</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="country : ${countries}">
+                <td th:text="${country.id}"></td>
+                <td th:text="${country.nameCountry}"></td>
+                <td th:text="${country.region.nameRegion}"></td>
+                <td>
+                    <a th:href="@{/countries/edit/{id}(id=${country.id})}" class="btn btn-success btn-sm">Edit</a>
+                    <a th:href="@{/countries/delete/{id}(id=${country.id})}" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure?')">Delete</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </section>
+</main>
+
+<script type="text/javascript">
+    if(localStorage.getItem("darkmode")){
+        var body_el = document.body;
+        body_el.className += 'dark';
+    }
+</script>
+
+<script src="admin/js/jquery-3.5.0.min.js"></script>
+<script src="admin/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

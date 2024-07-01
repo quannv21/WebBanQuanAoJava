@@ -18,18 +18,8 @@
             <div class="text-danger" th:if="${#fields.hasErrors('nameLeague')}"
                  th:errors="*{nameLeague}"></div>
         </div>
-            <!-- New input field for tournament -->
-        <div class="mb-3">
-            <label for="tournament" class="form-label">Tên giải đấu:</label>
-            <select th:field="*{tournament}" class="form-control" id="tournament" required>
-                <option value="">Choose...</option>
-                <option th:each="tournament : ${tournaments}" th:value="${tournament.id}" th:text="${tournament.name}"></option>
-            </select>
-            <div class="text-danger" th:if="${#fields.hasErrors('tournament')}"
-                 th:errors="*{tournament}"></div>
-        </div>
         <button type="submit" class="btn btn-primary">Thêm mới câu lạc bộ</button>
-        <a th:href="@{/leagueclubs}" class="btn btn-link">Hủy</a>
+        <a href="/leagueclubs" class="btn btn-danger">Cancel</a>
     </form>
 </section>
 <script

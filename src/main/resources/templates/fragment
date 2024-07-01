@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layoutadmin}">
+<head th:replace="~{layoutadmin::head}"></head>
+<body>
+<header th:replace="~{layoutadmin::header}"></header>
+<section layout:fragment="content" class="container content-main mt-5""">
+    <h1>Category List</h1>
+    <a th:href="@{/brands/add}" class="btn btn-primary mb-3 me-2">Thêm thương hiệu</a>
+<!--===============Thêm nội dung ở đây============-->
+
+
+</section>
+</body>
+</html>

@@ -22,26 +22,8 @@
             <div class="text-danger" th:if="${#fields.hasErrors('nameRegion')}"
                  th:errors="*{nameRegion}"></div>
         </div>
-
-        <div class="mb-3">
-            <label for="tournament" class="form-label">Tên giải đấu:</label>
-            <select th:field="*{tournament}" class="form-control" id="tournament" required>
-                <option value="">Choose...</option>
-                <option th:each="tournament : ${tournaments}" th:value="${tournament.id}" th:text="${tournament.name}"></option>
-            </select>
-            <div class="text-danger" th:if="${#fields.hasErrors('tournament')}"
-                 th:errors="*{tournament}"></div>
-        </div>
-
-        <div class="mb-3">
-            <label for="countries" class="form-label">Quốc gia:</label>
-            <input type="text" th:field="*{countries}" class="form-control" id="countries" required>
-            <div class="text-danger" th:if="${#fields.hasErrors('countries')}"
-                 th:errors="*{countries}"></div>
-        </div>
-
         <button type="submit" class="btn btn-primary">Cập nhật khu vực</button>
-        <a th:href="@{/regions}" class="btn btn-link">Hủy</a>
+        <a href="/regions" class="btn btn-danger">Cancel</a>
     </form>
 </section>
 <script

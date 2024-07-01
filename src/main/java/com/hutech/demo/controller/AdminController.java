@@ -15,4 +15,15 @@ public class AdminController {
     public String product() {
         return "admin/page-products-list";
     }
+
+    @GetMapping("/layoutadmin")
+    public String showadmin() {
+        return "layoutadmin";
+    }
+
+    @GetMapping("/category-list")
+    public String showCategory() {
+        return "categories/categories-list";
+    }
+
 }
