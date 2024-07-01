@@ -66,17 +66,17 @@
                     </div>
                     <div class="col-md-7">
                         <div class="card-body">
-<!--                            <div class="brand-wrapper">
+                            <div class="brand-wrapper">
                                 <img th:src="@{/assets/images/logo.svg}" alt="logo" class="logo">
-                            </div>-->
+                            </div>
                             <p class="login-card-description">Đăng nhập</p>
                             <form th:action="@{/login}" method="post">
-<!--                                <div th:if="${param.error}" class="alert alert-danger">
+                                <div th:if="${param.error}" class="alert alert-danger">
                                     Invalid username and password.
                                 </div>
                                 <div th:if="${param.logout}" class="alert alert-success">
                                     You have been logged out.
-                                </div>-->
+                                </div>
                                 <div class="form-group">
                                     <!--<label for="username" class="form-label">Username:</label>-->
                                     <input type="text" id="username" name="username" class="form-control" placeholder="Username" required>
