@@ -68,9 +68,7 @@
 
 
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="~{layout}">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Register</title>
     <link rel="stylesheet"
@@ -81,64 +79,6 @@
     <link rel="stylesheet" href="assets/css/login.css">
 </head>
 <body>
-<!--<th:block th:replace="~{layout::header}"></th:block>
-<section layout:fragment="content" class="container-xl mt-5">
-    <div class="row align-items-center justify-content-center">
-        <div class="col-md-6 card p-4">
-            <h2 class="text-center text-info mb-4">Register</h2>
-            <form th:action="@{/register}" th:object="${user}" method="post">
-                <div th:if="${errors}" class="alert alert-danger justify-content-center" role="alert">
-                    <ul>
-                        <li th:each="error : ${errors}" th:text="${error}" class="text danger text-start"></li>
-                    </ul>
-                </div>
-
-                <div class="mb-1">
-                    <label for="email"></label>
-                    <input type="email" class="form-control" id="email" name="email"
-                           placeholder="Enter your email">
-                    &lt;!&ndash;<span class="text-danger" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span>&ndash;&gt;
-                </div>
-                <div class="mb-1">
-                    <label for="diaChi"></label>
-                    <input type="text" class="form-control" id="diaChi" name="diaChi"
-                           placeholder="Enter your address">
-                </div>
-                <div class="mb-1">
-                    <label for="fullName"></label>
-                    <input type="text" class="form-control" id="fullName" name="fullName"
-                           placeholder="Enter FullName">
-                </div>
-                <div class="mb-1">
-                    <label for="username"></label>
-                    <input type="text" class="form-control" id="username" name="username"
-                           placeholder="Enter your username">
-                </div>
-                <div class="mb-1">
-                    <label for="password"></label>
-                    <input type="password" class="form-control" id="password"
-                           name="password" placeholder="Enter your password">
-                </div>
-                <div class="mb-1">
-                    <label for="phone"></label>
-                    <input type="tel" class="form-control" id="phone" name="phone"
-                           placeholder="Enter your phone">
-                </div>
-                <div class="row">
-                    <div class="col-8">
-                        <p class="mt-3 mb-0">Already have an account? <a class="text-info text center"
-                                                                         th:href="${'/login'}">Login?</a></p>
-                    </div>
-                    <div class="col-4">
-                        <button type="submit" class="btn btn-primary btn-lg btn-block">Sign up</button>
-                    </div>
-                </div>
-            </form>
-        </div>
-    </div>
-</section>
-<th:block th:replace="~{layout::footer}"></th:block>-->
-<section layout:fragment="content" class="container-xl mt-5">
 <main class="d-flex align-items-center min-vh-100 py-3 py-md-0">
     <div class="container">
         <div class="card login-card">
@@ -206,32 +146,6 @@
                 </div>
             </div>
         </div>
-        <!-- <div class="card login-card">
-          <img src="assets/images/login.jpg" alt="login" class="login-card-img">
-          <div class="card-body">
-            <h2 class="login-card-title">Login</h2>
-            <p class="login-card-description">Sign in to your account to continue.</p>
-            <form action="#!">
-              <div class="form-group">
-                <label for="email" class="sr-only">Email</label>
-                <input type="email" name="email" id="email" class="form-control" placeholder="Email">
-              </div>
-              <div class="form-group">
-                <label for="password" class="sr-only">Password</label>
-                <input type="password" name="password" id="password" class="form-control" placeholder="Password">
-              </div>
-              <div class="form-prompt-wrapper">
-                <div class="custom-control custom-checkbox login-card-check-box">
-                  <input type="checkbox" class="custom-control-input" id="customCheck1">
-                  <label class="custom-control-label" for="customCheck1">Remember me</label>
-                </div>
-                <a href="#!" class="text-reset">Forgot password?</a>
-              </div>
-              <input name="login" id="login" class="btn btn-block login-btn mb-4" type="button" value="Login">
-            </form>
-            <p class="login-card-footer-text">Don't have an account? <a href="#!" class="text-reset">Register here</a></p>
-          </div>
-        </div> -->
     </div>
 </main>
 </section>

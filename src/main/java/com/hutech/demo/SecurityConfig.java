@@ -1,4 +1,5 @@
 package com.hutech.demo;
+
 import com.hutech.demo.service.OAuthService;
 import com.hutech.demo.service.UserService;
 import jakarta.validation.constraints.NotNull;
@@ -21,15 +22,17 @@ public class SecurityConfig {
     private final OAuthService OAuthService;
 
     private final UserService userService; // Tiêm UserService vào lớp cấu hình này.
-    @Bean // Đánh dấu phương thức trả về một bean được quản lý bởi Spring Context.
 
+    @Bean // Đánh dấu phương thức trả về một bean được quản lý bởi Spring Context.
     public UserDetailsService userDetailsService() {
         return new UserService(); // Cung cấp dịch vụ xử lý chi tiết người dùng.
     }
+
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder(); // Bean mã hóa mật khẩu sử dụng BCrypt.
     }
+
     @Bean
     public DaoAuthenticationProvider authenticationProvider() {
         var auth = new DaoAuthenticationProvider(); // Tạo nhà cung cấp xác thực.
@@ -37,23 +40,18 @@ public class SecurityConfig {
         auth.setPasswordEncoder(passwordEncoder()); // Thiết lập cơ chế mã hóa mật khẩu.
         return auth; // Trả về nhà cung cấp xác thực.
     }
+
     @Bean
     public SecurityFilterChain securityFilterChain(@NotNull HttpSecurity http) throws Exception {
         return http
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/css/**", "/js/**", "/", "/oauth/**", "/register", "/error",
-                                "/products", "/cart", "/cart/**", "/img/**", "/")
-                        .permitAll() // Cho phép truy cập không cần xác thực.
-                        .requestMatchers("/products/edit/**", "/products/add", "/products/delete")
-                        .hasAnyAuthority("ADMIN") // Chỉ cho phép ADMIN truy cập.
-                        .requestMatchers("/api/**")
-                        .permitAll() // API mở cho mọi người dùng.
-                        .anyRequest().authenticated() // Bất kỳ yêu cầu nào khác cần xác thực.
+                        .requestMatchers("/**")
+                        .permitAll() // Cho phép truy cập không cần xác thực cho tất cả các URL.
                 )
                 .logout(logout -> logout
                         .logoutUrl("/logout")
-                        .logoutSuccessUrl("/") // Trang chuyển hướng sau khi đăng xuất.
+                        .logoutSuccessUrl("/login") // Trang chuyển hướng sau khi đăng xuất.
                         .deleteCookies("JSESSIONID") // Xóa cookie.
                         .invalidateHttpSession(true) // Hủy phiên làm việc.
                         .clearAuthentication(true) // Xóa xác thực.
@@ -62,11 +60,11 @@ public class SecurityConfig {
                 .formLogin(formLogin -> formLogin
                         .loginPage("/login") // Trang đăng nhập.
                         .loginProcessingUrl("/login") // URL xử lý đăng nhập.
-                        .defaultSuccessUrl("/", true) // Trang sau đăng nhập thành công.
+                        .defaultSuccessUrl("/home") // Trang sau đăng nhập thành công.
                         .failureUrl("/login?error") // Trang đăng nhập thất bại.
                         .permitAll()
-
-                ).oauth2Login(
+                )
+                .oauth2Login(
                         oauth2Login -> oauth2Login
                                 .loginPage("/login")
                                 .failureUrl("/login?error")
@@ -85,9 +83,8 @@ public class SecurityConfig {
                                         }
                                 )
                                 .permitAll()
-
-
-                ).rememberMe(rememberMe -> rememberMe
+                )
+                .rememberMe(rememberMe -> rememberMe
                         .key("hutech")
                         .rememberMeCookieName("hutech")
                         .tokenValiditySeconds(24 * 60 * 60) // Thời gian nhớ đăng nhập.
