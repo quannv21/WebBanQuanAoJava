@@ -22,6 +22,13 @@
             <div class="text-danger" th:if="${#fields.hasErrors('nameCountry')}"
                  th:errors="*{country.name}"></div>
         </div>
+        <div class="mb-3">
+            <label for="region" class="form-label">Region:</label>
+            <select id="region" th:field="*{region}" class="form-control">
+                <option th:each="region : ${regions}" th:value="${region.id}" th:text="${region.nameRegion}"></option>
+            </select>
+            <div class="text-danger" th:if="${#fields.hasErrors('region')}" th:errors="*{region}"></div>
+        </div>
         <button type="submit" class="btn btn-primary">Cập nhật quốc gia</button>
         <a th:href="@{/countries}" class="btn btn-link">Hủy</a>
     </form>

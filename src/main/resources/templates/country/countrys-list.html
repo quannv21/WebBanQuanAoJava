@@ -16,12 +16,14 @@
         <tr>
             <th>ID</th>
             <th>Tên quốc gia</th>
+            <th>Khu vực</th>
         </tr>
         </thead>
         <tbody>
         <tr th:each="country : ${countries}">
             <td th:text="${country.id}"></td>
             <td th:text="${country.nameCountry}"></td>
+            <td th:text="${country.region.nameRegion}"></td>
             <td>
                 <a th:href="@{/countries/edit/{id}(id=${country.id})}" class="btn btn-success btn-sm">Edit</a>
                 <a th:href="@{/countries/delete/{id}(id=${country.id})}" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure?')">Delete</a>
